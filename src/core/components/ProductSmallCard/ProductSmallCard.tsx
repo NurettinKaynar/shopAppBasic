@@ -7,7 +7,7 @@ const ProductSmallCard = ({CardsData}:{CardsData:ProductDto}) => {
   return (
     <div className='col-12 sm:col-6 lg:col-12 xl:col-4 p-2 ' >
 
-    <div className='w-full p-2 flex flex-column align-items-center gap-3 border-round border-gray-300 border-1 ' >
+    <div className='cursor-pointer hover:shadow-3 w-full p-2 flex flex-column align-items-center gap-3 border-round border-gray-300 border-1 ' >
         <div className='w-full flex justify-content-between' >
             <div className='flex align-items-center gap-2' >
             <i className="pi pi-tag"></i>

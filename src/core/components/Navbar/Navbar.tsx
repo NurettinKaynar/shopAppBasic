@@ -1,12 +1,26 @@
 import { InputText } from 'primereact/inputtext';
 import { Menubar } from 'primereact/menubar';
-const Navbar = () => {
-  
+import { useState } from 'react';
+const Navbar = ({onSearch}:{onSearch:any}) => {
+  const [searchInput, setSearchInput] = useState<string>('')
+
+  const handleChange = (e:any) => {
+    const text = e.target.value;
+    setSearchInput(text);
+    onSearch(text); // Ana sayfadaki onSearch fonksiyonunu çağırarak arama metnini iletebilirsiniz.
+  };
    const start =( 
     <div className='flex align-items-center gap-2 md:gap-7'>
 
-        <span className='font-semibold text-xl text-white' >deneme</span>
-        <InputText placeholder="Search" type="text" className="w-8rem sm:w-auto" />
+        <span className='font-semibold text-xl text-white' >eteration</span>
+        <span className=" p-input-icon-left">
+        <i className="pi pi-search" />
+        <InputText
+        className=" w-auto md:w-20rem "
+        placeholder="Search By Product Name"
+        value={searchInput}
+        onChange={handleChange} />
+      </span>
     </div>
    );
     const end = (

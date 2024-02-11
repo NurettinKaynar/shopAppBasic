@@ -5,14 +5,20 @@ import 'primeicons/primeicons.css'; //icons
 import 'primeflex/primeflex.css'; // flex
 import Navbar from './core/components/Navbar/Navbar';
 import Home from './core/pages/Home/Home';
+import { useState } from "react";
 function App() {
+  const [searchText, setSearchText] = useState('');
+
+  const handleSearch = (text:string) => {
+    setSearchText(text);
+  };
 
   return (
     <BrowserRouter>
-      <Navbar/>
+      <Navbar onSearch={handleSearch}/>
     <Routes >
      
-      <Route path='/' Component={Home} />
+      <Route path='/' element={<Home searchValue={searchText} />} />
      
       </Routes>
     </BrowserRouter>

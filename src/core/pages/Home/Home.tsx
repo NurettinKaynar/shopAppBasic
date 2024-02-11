@@ -7,7 +7,7 @@ import { ProductDto } from '../../models';
 import { useEffect, useState } from 'react';
 import ProductSmallCard from '../../components/ProductSmallCard/ProductSmallCard';
 import { SortByEnum } from '../../enums';
-const Home = () => {
+const Home = ({searchValue}:{searchValue:string}) => {
   const [products, setProducts] = useState<ProductDto[]>()
   const [brands, setBrands] = useState<string[]>()
   const [filteredProducts, setFilteredProducts] = useState<ProductDto[]>([]);
@@ -67,13 +67,12 @@ const Home = () => {
 };
 
   const sortByBrand = (selectedBrands: string[]) => {
-    console.log("selectedBrand",selectedBrands);
+
     
     if (selectedBrands.length === 0 && products) {
-      setFilteredProducts(products); // Show all products if no brand is selected
+      setFilteredProducts(products);
     } else {
       const filtered = products?.filter(product => selectedBrands.includes(product.brand || ''));
-      console.log("filtered",filtered);
       if(filtered)
       setFilteredProducts(filtered);
     }
@@ -87,9 +86,17 @@ const Home = () => {
 };
 
 
+
+
+
   useEffect(() => {
     handleGetAllProducts()
-  }, [])
+    if(products && searchValue){
+      setFilteredProducts(products?.filter((product) =>
+      product.name.toLowerCase().includes(searchValue.toLowerCase())
+    ))
+    }
+  }, [searchValue])
   
   return (
     <div className='w-full flex justify-content-center flex-1 pt-6' >
