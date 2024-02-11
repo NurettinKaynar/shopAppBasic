@@ -1,18 +1,28 @@
 import { InputText } from 'primereact/inputtext';
 import { Menubar } from 'primereact/menubar';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { CardItem, ProductDto } from '../../models';
+import { Link } from 'react-router-dom';
 const Navbar = ({onSearch}:{onSearch:any}) => {
   const [searchInput, setSearchInput] = useState<string>('')
 
   const handleChange = (e:any) => {
     const text = e.target.value;
     setSearchInput(text);
-    onSearch(text); // Ana sayfadaki onSearch fonksiyonunu çağırarak arama metnini iletebilirsiniz.
+    onSearch(text);
+  };
+  const shoppingCard:CardItem=useSelector((state:any)=>state.shop.product)  
+    
+    
+  const productCounter = () => {
+      return Number(shoppingCard.product.price)*shoppingCard.quantity;
+  
   };
    const start =( 
     <div className='flex align-items-center gap-2 md:gap-7'>
 
-        <span className='font-semibold text-xl text-white' >eteration</span>
+        <Link to={'/'}><span className='font-semibold text-xl text-white' >Eteration</span></Link>
         <span className=" p-input-icon-left">
         <i className="pi pi-search" />
         <InputText
@@ -27,11 +37,11 @@ const Navbar = ({onSearch}:{onSearch:any}) => {
         <div className="flex align-items-center gap-4 md:gap-7 text-white">
             <div className='flex align-items-center gap-2' >
             <i className='pi pi-shopping-bag' ></i>
-            <span className='hidden md:inline-block font-medium' >17.000 ₺</span>
+            {/* <span className='hidden md:inline-block font-medium' >{productCounter()} ₺</span> */}
             </div>
             <div className='flex align-items-center gap-2' >
             <i className='pi pi-user' ></i>
-            <span className='hidden md:inline-block font-medium' >Nurettin</span>
+            <span className='hidden md:inline-block font-medium' >Nurettin KAYNAR</span>
             </div>
         </div>
     );

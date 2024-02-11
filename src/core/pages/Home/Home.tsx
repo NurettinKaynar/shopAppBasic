@@ -11,6 +11,9 @@ const Home = ({searchValue}:{searchValue:string}) => {
   const [products, setProducts] = useState<ProductDto[]>()
   const [brands, setBrands] = useState<string[]>()
   const [filteredProducts, setFilteredProducts] = useState<ProductDto[]>([]);
+  
+
+
   const handleGetAllProducts=()=>{
     get().then((res:AxiosResponse<ProductDto[]>)=>{
       if(res.status===200){

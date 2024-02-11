@@ -1,4 +1,4 @@
 export default {
     selectedProduct:null,
-    shoppingCart:[]
+    shoppingCart: [] 
 }
