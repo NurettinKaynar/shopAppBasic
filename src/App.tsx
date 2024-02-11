@@ -6,6 +6,7 @@ import 'primeflex/primeflex.css'; // flex
 import Navbar from './core/components/Navbar/Navbar';
 import Home from './core/pages/Home/Home';
 import { useState } from "react";
+import ProductDetail from "./core/pages/ProductDetail/ProductDetail";
 function App() {
   const [searchText, setSearchText] = useState('');
 
@@ -19,6 +20,7 @@ function App() {
     <Routes >
      
       <Route path='/' element={<Home searchValue={searchText} />} />
+      <Route path="/ProductDetail" element={<ProductDetail/>} />
      
       </Routes>
     </BrowserRouter>
