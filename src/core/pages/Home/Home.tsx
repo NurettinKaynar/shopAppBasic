@@ -6,6 +6,7 @@ import { get } from '../../services/HttpEntityService';
 import { ProductDto } from '../../models';
 import { useEffect, useState } from 'react';
 import ProductSmallCard from '../../components/ProductSmallCard/ProductSmallCard';
+import { SortByEnum } from '../../enums';
 const Home = () => {
   const [products, setProducts] = useState<ProductDto[]>()
   const [brands, setBrands] = useState<string[]>()
@@ -25,16 +26,55 @@ const Home = () => {
     
     setBrands(products?.map(product=>product.brand))
   }
+  const handleRadioButtonChange = (selectedRadioButton: SortByEnum) => {
+    let sortedProducts: ProductDto[] = [];
+    switch (selectedRadioButton) {
+        case SortByEnum.NewToOld:
+            sortedProducts = products?.slice().sort((a: ProductDto, b: ProductDto) => {
+                if (a.createdAt && b.createdAt) {
+                    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+                }
+                return 0;
+            }) || [];
+            break;
+        case SortByEnum.OldToNew:
+            sortedProducts = products?.slice().sort((a: ProductDto, b: ProductDto) => {
+                if (a.createdAt && b.createdAt) {
+                    return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+                }
+                return 0;
+            }) || [];
+            break;
+        case SortByEnum.PriceHighToLow:
+            sortedProducts = products?.slice().sort((a: ProductDto, b: ProductDto) => {
+                if (a.price && b.price) {
+                    return Number( b.price) - Number(a.price);
+                }
+                return 0;
+            }) || [];
+            break;
+        case SortByEnum.PriceLowToHigh:
+            sortedProducts = products?.slice().sort((a: ProductDto, b: ProductDto) => {
+                if (a.price && b.price) {
+                    return Number( a.price) - Number(b.price);
+                }
+                return 0;
+            }) || [];
+            break;
+
+    }
+    setFilteredProducts(sortedProducts);
+};
 
   const sortByBrand = (selectedBrands: string[]) => {
     console.log("selectedBrand",selectedBrands);
     
-    if (selectedBrands.length === 0) {
+    if (selectedBrands.length === 0 && products) {
       setFilteredProducts(products); // Show all products if no brand is selected
     } else {
       const filtered = products?.filter(product => selectedBrands.includes(product.brand || ''));
       console.log("filtered",filtered);
-      
+      if(filtered)
       setFilteredProducts(filtered);
     }
   };
@@ -56,7 +96,7 @@ const Home = () => {
 
 <div className="flex w-full gap-1 md:w-11">
     <div className="flex-none flex-column flex gap-4 w-3">
-        <SortByComponent/>
+        <SortByComponent onRadioButtonChange={handleRadioButtonChange}/>
         {
           brands?
         <SortByBrandsComponent brands={brands} onCheckboxChange={sortByBrand} />

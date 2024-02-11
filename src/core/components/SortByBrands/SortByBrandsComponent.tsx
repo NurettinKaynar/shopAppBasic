@@ -28,7 +28,7 @@ const SortByBrandsComponent: React.FC<Props> = ({ brands, onCheckboxChange }) =>
 
 useEffect(() => {
   onCheckboxChange(selectedBrands);
-}, [selectedBrands, onCheckboxChange]);
+}, [selectedBrands]);
   
 
   return (
