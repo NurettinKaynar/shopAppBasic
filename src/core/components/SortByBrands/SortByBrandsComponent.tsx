@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { InputText } from 'primereact/inputtext';
-import { Checkbox } from 'primereact/checkbox';
+import { Checkbox, CheckboxChangeEvent } from 'primereact/checkbox';
 
 interface Props {
   brands: string[];
@@ -8,26 +8,41 @@ interface Props {
 }
 
 const SortByBrandsComponent: React.FC<Props> = ({ brands, onCheckboxChange }) => {
+  const [searchInput, setSearchInput] = useState<string>('')
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
-
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const allBrands=Array.from(new Set(brands))
+  const handleCheckboxChange = (e: CheckboxChangeEvent) => {
     const value = e.target.value;
-    if (e.target.checked) {
-      setSelectedBrands([...selectedBrands, value]);
-    } else {
-      setSelectedBrands(selectedBrands.filter((brand) => brand !== value));
-    }
-    onCheckboxChange(selectedBrands);
+    setSelectedBrands(prevSelectedBrands => {
+      const updatedSelectedBrands = e.target.checked
+        ? [...prevSelectedBrands, value]
+        : prevSelectedBrands.filter((brand) => brand !== value);
+      onCheckboxChange(updatedSelectedBrands);
+      return updatedSelectedBrands;
+    });
   };
 
+  const filteredBrands = allBrands.filter(brand =>
+    brand.toLowerCase().includes(searchInput.toLowerCase())
+);
+
+useEffect(() => {
+  onCheckboxChange(selectedBrands);
+}, [selectedBrands, onCheckboxChange]);
+  
+
   return (
-    <div className="card shadow-2 flex flex-column p-4">
+    <div className="card shadow-2 flex flex-column p-4 gap-4">
       <span className=" p-input-icon-left">
         <i className="pi pi-search" />
-        <InputText className=" border-none w-full" placeholder="Search" />
+        <InputText
+        className=" border-none w-full"
+        placeholder="Search"
+        value={searchInput}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchInput(e.target.value)} />
       </span>
-      <div className="flex flex-column gap-2">
-        {brands&&brands.map((item, index) => (
+      <div className="flex flex-column gap-2 h-min max-h-30rem overflow-y-scroll">
+        {filteredBrands && filteredBrands.map((item, index) => (
           <div className="flex align-items-center" key={index}>
             <Checkbox
               inputId={`${item}${index}`}

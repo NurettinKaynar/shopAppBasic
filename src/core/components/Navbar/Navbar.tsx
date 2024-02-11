@@ -23,7 +23,7 @@ const Navbar = () => {
     );
 
   return (
-    <div className='w-full top-0 sticky flex justify-content-center bg-blue-500 px-2'>
+    <div className='w-full top-0 sticky flex justify-content-center bg-blue-500 px-2 z-5'>
     <Menubar className='bg-blue-500 text-white md:w-9 w-full border-none' start={start} end={end} />
     </div>
   )
