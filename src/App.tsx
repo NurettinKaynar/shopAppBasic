@@ -18,10 +18,12 @@ function App() {
   };
   useEffect(() => {
     if(localStorage.getItem("SELECTED_PRODUCT")){
+      // @ts-ignore
       const selectedProducts=JSON.parse(localStorage.getItem('SELECTED_PRODUCT'))
       dispatch(selectProduct(selectedProducts))
     }
     if(localStorage.getItem('SHOPPING_CARTS')){
+      // @ts-ignore
       const shoppingCart=JSON.parse(localStorage.getItem('SHOPPING_CARTS'))
         shoppingCart.forEach((product:ProductItem)=>{
 

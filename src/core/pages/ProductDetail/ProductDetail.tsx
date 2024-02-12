@@ -21,6 +21,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     if(localStorage.getItem("SELECTED_PRODUCT")){
+      // @ts-ignore
       const selectedProducts=JSON.parse(localStorage.getItem('SELECTED_PRODUCT'))
       dispatch(selectProduct(selectedProducts))
     }
