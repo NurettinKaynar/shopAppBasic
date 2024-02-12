@@ -8,7 +8,7 @@ Projede 2 adet sayfa vardır
 Home sayfasında genel tüm ürünleri, filtrelemeyi ve sepetinizdeki ürünleri görüntüleyebilirsiniz
 # Canlı Erişim
 
-[text](https://shop-app-basic.vercel.app/)
+[[text](https://shop-app-basic.vercel.app/)](https://shop-app-basic.vercel.app/)
 
 # Proje İçerisinde yer alan teknolojileri
 React, Redux, React-Redux, PrimeFlex, PrimeReact, Axios ve React-router-dom proje anayapısında yer almaktadır.
@@ -20,5 +20,5 @@ Projeninin kurulumu için tek yapmanız gereken **npm i -f**
 Projeyi Çalıştırmak için **npm run dev** yapmanız yeterli
 
 
-
+# Sorularınız için bana buradan ulaşabilirsiniz
 @NurettinKaynar
