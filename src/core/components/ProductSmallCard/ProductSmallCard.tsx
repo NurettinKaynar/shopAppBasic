@@ -28,12 +28,12 @@ const ProductSmallCard = ({CardsData}:{CardsData:ProductDto}) => {
   return (
     <>
         <Toast ref={toast} />
-    <div className='col-12 sm:col-6 lg:col-12 xl:col-4 p-2 ' >
+    <div className='col-12 md:col-4 p-2 w-full ' >
       <div className='hover:shadow-3 w-full p-2 flex flex-column align-items-center gap-3 border-round border-gray-300 border-1'>
 
      
-    <Link to={'/ProductDetail'}  onClick={handleOnboard} className='text-color cursor-pointer  flex flex-column gap-3 ' >
-        <div className='w-full flex justify-content-between gap-3' >
+    <Link to={'/ProductDetail'}  onClick={handleOnboard} className='w-full text-color cursor-pointer  flex flex-column gap-3 ' >
+        <div className='w-full flex justify-content-between flex-column md:flex-row gap-3' >
             <div className='flex align-items-center gap-2' >
             <i className="pi pi-tag"></i>
             <span className='font-semibold' >{CardsData.brand}</span>

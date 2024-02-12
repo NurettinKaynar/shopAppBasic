@@ -16,7 +16,7 @@ const SortByComponent:React.FC<Props> =({  onRadioButtonChange }) => {
   return (
     <div className=" flex flex-column gap-2">
         <span className='text-gray-300'>Sort By</span>
-        <div className='card shadow-2 flex flex-column p-4 gap-3' >
+        <div className='w-full card shadow-2 flex flex-column p-4 gap-3' >
             {/* Button 1 */}
         <div className="flex align-items-center">
         <RadioButton
