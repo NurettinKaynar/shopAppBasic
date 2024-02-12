@@ -12,9 +12,11 @@ const SortByBrandsComponent: React.FC<Props> = ({ brands, onCheckboxChange }) =>
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const allBrands=Array.from(new Set(brands))
   const handleCheckboxChange = (e: CheckboxChangeEvent) => {
-    const value = e.target.value;
+    console.log("e",e);
+    
+    const value = e.value
     setSelectedBrands(prevSelectedBrands => {
-      const updatedSelectedBrands = e.target.checked
+      const updatedSelectedBrands = e.checked
         ? [...prevSelectedBrands, value]
         : prevSelectedBrands.filter((brand) => brand !== value);
       onCheckboxChange(updatedSelectedBrands);
@@ -44,13 +46,15 @@ useEffect(() => {
       <div className="flex flex-column gap-2 h-min max-h-30rem overflow-y-scroll">
         {filteredBrands && filteredBrands.map((item, index) => (
           <div className="flex align-items-center" key={index}>
-            <Checkbox
-              inputId={`${item}${index}`}
-              name={item}
-              value={item}
-              checked={selectedBrands.includes(item)}
-              onChange={handleCheckboxChange}
-            />
+           <Checkbox
+    inputId={`${item}${index}`}
+    name={item}
+    value={item}
+    checked={selectedBrands.includes(item)}
+    defaultChecked={selectedBrands.includes(item)} // Use defaultChecked instead of checked
+    onChange={handleCheckboxChange} // Add onChange handler
+/>
+
             <label htmlFor={`${item}${index}`} className="ml-2">
               {item}
             </label>

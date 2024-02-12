@@ -21,7 +21,7 @@ const SortByComponent:React.FC<Props> =({  onRadioButtonChange }) => {
         <div className="flex align-items-center">
         <RadioButton
         inputId="sortBy1"
-        name="sortBy1"
+        name="OldToNew"
         value={SortByEnum.OldToNew}
         onChange={(e: RadioButtonChangeEvent) => handleRadioButtonChange(e)}
         checked={selectedRadioButton === SortByEnum.OldToNew}
@@ -32,7 +32,7 @@ const SortByComponent:React.FC<Props> =({  onRadioButtonChange }) => {
         <div className="flex align-items-center">
         <RadioButton
         inputId="sortBy2"
-        name="sortBy2"
+        name="NewToOld"
         value={SortByEnum.NewToOld}
         onChange={(e: RadioButtonChangeEvent) => handleRadioButtonChange(e)}
         checked={selectedRadioButton === SortByEnum.NewToOld}
@@ -43,7 +43,7 @@ const SortByComponent:React.FC<Props> =({  onRadioButtonChange }) => {
         <div className="flex align-items-center">
         <RadioButton
         inputId="sortBy3"
-        name="sortBy3"
+        name="priceHighToLow"
         value={SortByEnum.PriceHighToLow}
         onChange={(e: RadioButtonChangeEvent) => handleRadioButtonChange(e)}
         checked={selectedRadioButton === SortByEnum.PriceHighToLow}
@@ -53,13 +53,13 @@ const SortByComponent:React.FC<Props> =({  onRadioButtonChange }) => {
             {/* Button 4 */}
         <div className="flex align-items-center">
         <RadioButton
-        inputId="sortBy3"
-        name="sortBy3"
-        value={SortByEnum.PriceLowToHigh}
-        onChange={(e: RadioButtonChangeEvent) => handleRadioButtonChange(e)}
-        checked={selectedRadioButton === SortByEnum.PriceLowToHigh}
-        />
-        <label htmlFor="sortBy3" className="ml-2"> Price Low To High</label>
+    inputId="sortBy4"
+    name="PriceLowToHigh"
+    value={SortByEnum.PriceLowToHigh}
+    onChange={(e: RadioButtonChangeEvent) => handleRadioButtonChange(e)}
+    checked={selectedRadioButton === SortByEnum.PriceLowToHigh}
+/>
+        <label htmlFor="sortBy4" className="ml-2"> Price Low To High</label>
     </div>
         </div>
     </div>

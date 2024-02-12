@@ -3,37 +3,18 @@ import { CardItem, ProductDto } from '../../models'
 import { Tag } from 'primereact/tag'
 import { Button } from 'primereact/button';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, incrementProductQuantity, selectProduct, updateCartItemQuantity } from '../../redux/actions/actionCreator';
+import { useDispatch } from 'react-redux';
+import { AddCart, selectProduct } from '../../redux/actions/actionCreator';
 import { Toast } from 'primereact/toast';
 
 const ProductSmallCard = ({CardsData}:{CardsData:ProductDto}) => {
   const navigation=useNavigate()
   const dispatch=useDispatch()
-  const productDeta: any = useSelector((state: any) => state.shop.product);
-  
-  
+
   const toast=useRef<Toast>(null)
 
   const handleAddToCart = (product: ProductDto) => {
-    // @ts-ignore
-      const shoppingProducts=JSON.parse(localStorage.getItem('SHOPPING_CART'))
-
-    const prevQuantity = productDeta ? productDeta.quantity : 0;
-
-    if(shoppingProducts&&shoppingProducts.length<=0){
-
-      dispatch(addToCart(CardsData)); 
-    }
-    else{
-      const cardItem: CardItem = {
-        product: [product],
-        quantity: prevQuantity + 1 
-    };
-    dispatch(selectProduct(cardItem))
-      dispatch(incrementProductQuantity(cardItem)); 
-    }
-    
+    dispatch(AddCart(product)); 
     toast.current?.show({ severity: 'info', summary: 'Ürün Eklendi', detail: 'Ürün Sepetinize Eklendi' });
 }
 
@@ -41,12 +22,7 @@ const ProductSmallCard = ({CardsData}:{CardsData:ProductDto}) => {
 
 
   const handleOnboard=()=>{
-    const selectedProduct:CardItem={
-      product:CardsData,
-      quantity:0
-    }
-    
-    dispatch(selectProduct(selectedProduct))
+    dispatch(selectProduct(CardsData))
     navigation('/ProductDetail')
   }
   return (

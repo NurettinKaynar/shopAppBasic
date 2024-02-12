@@ -7,8 +7,9 @@ import { useEffect, useState } from "react";
 import ProductDetail from "./core/pages/ProductDetail/ProductDetail";
 import { PrimeReactProvider } from 'primereact/api';
 import { useDispatch } from "react-redux";
-import { addToCart, selectProduct } from "./core/redux/actions/actionCreator";
-import { CardItem } from "./core/models";
+import {  AddCart, selectProduct } from "./core/redux/actions/actionCreator";
+import { ProductItem } from "./core/models";
+
 function App() {
   const [searchText, setSearchText] = useState('');
   const dispatch=useDispatch()
@@ -16,19 +17,16 @@ function App() {
     setSearchText(text);
   };
   useEffect(() => {
-    if(localStorage.getItem('SELECTED_PRODUCT')){
-      const selectedProduct=JSON.parse(`${localStorage.getItem('SELECTED_PRODUCT')}`)
-      dispatch(selectProduct(selectedProduct))
+    if(localStorage.getItem("SELECTED_PRODUCT")){
+      const selectedProducts=JSON.parse(localStorage.getItem('SELECTED_PRODUCT'))
+      dispatch(selectProduct(selectedProducts))
     }
-    if(localStorage.getItem('SHOPPING_CART')){
-      const shoppingCart=JSON.parse(`${localStorage.getItem('SHOPPING_CART')}`)
-      console.log();
-      
-      let data:CardItem={
-        product:[shoppingCart.product],
-        quantity:shoppingCart.quantity
-      };
-      dispatch(addToCart(data))
+    if(localStorage.getItem('SHOPPING_CARTS')){
+      const shoppingCart=JSON.parse(localStorage.getItem('SHOPPING_CARTS'))
+        shoppingCart.forEach((product:ProductItem)=>{
+
+          dispatch(AddCart(product))
+        })
     }
 
   }, [])

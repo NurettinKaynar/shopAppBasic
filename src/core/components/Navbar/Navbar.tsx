@@ -2,7 +2,7 @@ import { InputText } from 'primereact/inputtext';
 import { Menubar } from 'primereact/menubar';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { CardItem, ProductDto } from '../../models';
+import { CardItem, ProductDto, ProductItem } from '../../models';
 import { Link } from 'react-router-dom';
 const Navbar = ({onSearch}:{onSearch:any}) => {
   const [searchInput, setSearchInput] = useState<string>('')
@@ -12,21 +12,24 @@ const Navbar = ({onSearch}:{onSearch:any}) => {
     setSearchInput(text);
     onSearch(text);
   };
-  const shoppingCard:CardItem=useSelector((state:any)=>state.shop.product)  
-    
-    
-  const productCounter = () => {
-      return Number(shoppingCard.product.price)*shoppingCard.quantity;
-  
-  };
+  const shoppingCard=useSelector((state:any)=>state.shop.Carts)
+
+    const handleTotalPrice=()=>{      
+      let totalPrice=0
+      shoppingCard.forEach((product:ProductItem) => {
+        
+        totalPrice+=product.quantity * Number(product.price);
+      });
+      return totalPrice
+    }
    const start =( 
     <div className='flex align-items-center gap-2 md:gap-7'>
 
-        <Link to={'/'}><span className='font-semibold text-xl text-white' >Eteration</span></Link>
+        <Link to={'/'}><span className='font-semibold text-xl text-white' >deneme</span></Link>
         <span className=" p-input-icon-left">
         <i className="pi pi-search" />
         <InputText
-        className=" w-auto md:w-20rem "
+        className=" w-10rem md:w-20rem "
         placeholder="Search By Product Name"
         value={searchInput}
         onChange={handleChange} />
@@ -37,7 +40,7 @@ const Navbar = ({onSearch}:{onSearch:any}) => {
         <div className="flex align-items-center gap-4 md:gap-7 text-white">
             <div className='flex align-items-center gap-2' >
             <i className='pi pi-shopping-bag' ></i>
-            {/* <span className='hidden md:inline-block font-medium' >{productCounter()} ₺</span> */}
+            <span className='hidden md:inline-block font-medium' >{handleTotalPrice()} ₺</span>
             </div>
             <div className='flex align-items-center gap-2' >
             <i className='pi pi-user' ></i>

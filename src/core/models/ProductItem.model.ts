@@ -1,5 +1,6 @@
 export interface ProductItem {
-    totalPrice:number,
+    id:string,
     name:string,
-    counter:number
+    price:string,
+    quantity:number
 }
