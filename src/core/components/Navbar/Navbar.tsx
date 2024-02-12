@@ -25,7 +25,7 @@ const Navbar = ({onSearch}:{onSearch:any}) => {
    const start =( 
     <div className='flex align-items-center gap-2 md:gap-7'>
 
-        <Link to={'/'}><span className='font-semibold text-xl text-white' >deneme</span></Link>
+        <Link to={'/'}><span className='font-semibold text-xl text-white' >Eteration</span></Link>
         <span className=" p-input-icon-left">
         <i className="pi pi-search" />
         <InputText
