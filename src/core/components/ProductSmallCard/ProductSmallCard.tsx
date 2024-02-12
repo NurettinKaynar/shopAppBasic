@@ -42,7 +42,7 @@ const ProductSmallCard = ({CardsData}:{CardsData:ProductDto}) => {
         </div>
         <div className='w-full flex flex-column justify-content-center align-items-center gap-2' >
             <img src={CardsData.image} className='w-9 shadow-2 border-round' />
-            <div className="text-2xl font-bold">{CardsData.name}</div>
+            <div className="text-lg font-bold">{CardsData.name}</div>
         </div>
     </Link>
         <div className="w-full flex align-items-center justify-content-between">
