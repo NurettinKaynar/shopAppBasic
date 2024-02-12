@@ -105,8 +105,8 @@ const Home = ({searchValue}:{searchValue:string}) => {
   return (
     <div className='w-full flex  md:justify-content-center pt-6' >
 
-<div className="flex w-full md:flex-row flex-column gap-1">
-    <div className=" flex-grow-1 md:flex-none flex-column flex gap-4 w-full md:w-3">
+<div className=" flex w-full md:flex-row flex-column gap-1">
+    <div style={{top:'68px'}}  className=" sticky h-min flex-grow-1 md:flex-none flex-column flex gap-4 w-full md:w-3">
         <SortByComponent onRadioButtonChange={handleRadioButtonChange}/>
         {
           brands?
@@ -117,7 +117,7 @@ const Home = ({searchValue}:{searchValue:string}) => {
     <div className="flex-grow-1 flex align-items-center justify-content-center px-5">
     <DataView value={filteredProducts?filteredProducts:products} itemTemplate={itemTemplate} layout="grid"   paginator rows={12} />
     </div>
-    <div className="flex-none  ">
+    <div style={{top:'68px'}} className="flex-none sticky  h-min  ">
       <ShoppingCard/>
     </div>
 </div>

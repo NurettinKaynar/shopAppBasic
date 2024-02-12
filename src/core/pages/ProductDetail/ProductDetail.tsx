@@ -44,7 +44,7 @@ const ProductDetail = () => {
           </div>
       </div>
         </div>
-        <div className='col-12 md:col-3 card '>
+        <div className='col-12 md:col-3 card h-min sticky ' style={{top:'68px'}}>
           <ShoppingCard/>
         </div>
        

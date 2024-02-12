@@ -32,7 +32,11 @@ const ShoppingCard = () => {
   }, [shoppingCard]);
   return (
     <div className='flex flex-column gap-3' >
-        <div className='card flex flex-column gap-3 shadow-3' >
+      {
+        shoppingCard&& shoppingCard.length>0?
+        (
+          <>
+          <div className='card flex flex-column gap-3 shadow-3' >
             {
                 shoppingCard.map((item:any,index:number)=>(
                     <ProductItemCounter
@@ -55,6 +59,11 @@ const ShoppingCard = () => {
             </div>
             <Button label='Checkout' className='bg-primary w-full' />
         </div>
+        </>
+        )
+        :null
+      }
+        
     </div>
   )
 }
